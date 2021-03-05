@@ -1,0 +1,12 @@
+query Movies {
+  movies {
+    Title,
+    brief
+    cover {
+      url
+    },
+    tags {
+      label
+    }
+  }
+}
