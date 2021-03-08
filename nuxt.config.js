@@ -7,6 +7,9 @@ export default {
   env: {
     strapiAPIUri
   },
+  generate: {
+    fallback: true
+  },
   target: 'static',
   head: {
     titleTemplate: '%s - frontend',
