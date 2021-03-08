@@ -15,7 +15,7 @@
           </v-btn>
           <v-img
             height="250"
-            :src="'http://localhost:1337' + movie.cover.url"
+            :src="process.env.API_URL + movie.cover.url"
           ></v-img>
         </div>
         <v-card-title class="headline">
