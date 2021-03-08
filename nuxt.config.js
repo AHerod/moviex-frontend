@@ -62,7 +62,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: process.env.BACKEND_URL + '/graphql'
+        httpEndpoint: process.env.API_URL
       }
     }
   },
