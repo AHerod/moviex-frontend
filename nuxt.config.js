@@ -1,11 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
-const strapiBaseUri = process.env.API_URL || "http://localhost:1337";
+const strapiBaseUri = process.env.BACKEND_URL || "http://localhost:1337";
+const strapiAPIUri = process.env.API_URL || "http://localhost:1337/graphql";
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  env: {
-    strapiBaseUri,
-  },
   target: 'static',
   head: {
     titleTemplate: '%s - frontend',
@@ -61,7 +59,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: strapiBaseUri+'/graphql'
+        httpEndpoint: "http://localhost:1337/graphql"
       }
     }
   },
