@@ -1,0 +1,6 @@
+query Genres {
+  genres {
+    genre
+    id
+  }
+}

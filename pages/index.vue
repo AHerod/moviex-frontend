@@ -1,10 +1,10 @@
 <template lang="pug">
   v-row(justify='center' align='center')
-    .grid.grid-flow-col.grid-cols-3.grid-rows-3.gap-4
-      v-col.d-flex
-        v-card.pa-4.ma-4(v-for='(movie, index) in movies' :key='index')
-          v-img(height='250' :src='movie.cover.url')
-          v-card-title.headline
+    v-card.pa-4.ma-4(v-for='(movie, index) in movies' :key='index')
+      div.d-flex.flex-no-wrap.justify-sapce-between
+        v-img(:src='movie.cover.url' width="200")
+        div.flex.flex-col
+          v-card-title.headline.capitalize
             | {{ movie.Title }}
           v-card-text
             p
