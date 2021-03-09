@@ -15,7 +15,7 @@
           </v-btn>
           <v-img
             height="250"
-            :src="$config.strapiBaseUri + movie.cover.url"
+            :src="movie.cover.url"
           ></v-img>
         </div>
         <v-card-title class="headline">

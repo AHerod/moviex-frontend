@@ -12,6 +12,7 @@
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/apollo": "^4.0.1-rc.5",
     "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/cloudinary": "^1.0.3-beta-3",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.8.3",
     "graphql": "^15.5.0",

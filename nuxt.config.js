@@ -1,12 +1,18 @@
 import colors from 'vuetify/es5/util/colors'
 const strapiBaseUri = process.env.BACKEND_URL || "http://localhost:1337";
 const strapiAPIUri = process.env.API_URL || "http://localhost:1337/graphql";
+const cloudinaryName = process.env.CLOUDINARY_NAME;
+const cloudinaryKey = process.env.CLOUDINARY_KEY;
+const cloudinarySecret = process.env.CLOUDINARY_SECRET;
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   env: {
     strapiAPIUri,
-    strapiBaseUri
+    strapiBaseUri,
+    cloudinaryName,
+    cloudinaryKey,
+    cloudinarySecret
   },
   generate: {
     fallback: true
@@ -48,6 +54,7 @@ export default {
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
     '@nuxtjs/apollo',
+    '@nuxtjs/cloudinary'
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
@@ -69,6 +76,13 @@ export default {
         httpEndpoint: strapiAPIUri
       }
     }
+  },
+
+  // Cloudinary configuration options
+  cloudinary: {
+    cloudName: cloudinaryName,
+    apiKey: cloudinaryKey,
+    apiSecret: cloudinarySecret
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
