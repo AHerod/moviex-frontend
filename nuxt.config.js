@@ -5,7 +5,8 @@ const strapiAPIUri = process.env.API_URL || "http://localhost:1337/graphql";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   env: {
-    strapiAPIUri
+    strapiAPIUri,
+    strapiBaseUri
   },
   generate: {
     fallback: true
@@ -65,7 +66,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: process.env.API_URL
+        httpEndpoint: strapiAPIUri
       }
     }
   },
