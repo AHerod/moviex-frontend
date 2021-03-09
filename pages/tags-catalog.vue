@@ -1,25 +1,21 @@
-<template>
-  <v-row>
-    <v-col class='text-center'>
-      <blockquote class='blockquote'>
-        <footer>
-          <v-chip
-            @click='selected(tag.id)'
-            class='mx-1'
-            color='orange'
-            link
-            :outlined="!selectedTags.includes(tag.id)"
-            pill
+<template lang="pug">
+  v-row
+    v-col.text-center
+      blockquote.blockquote
+        footer
+          v-chip.mx-1(
             v-for='(tag,index) in tags'
-            :key='index'> {{ tag.label }}
-          </v-chip>
-          <v-btn icon color='orange' light>
-            <v-icon light>mdi-magnify</v-icon>
-          </v-btn>
-        </footer>
-      </blockquote>
-    </v-col>
-  </v-row>
+            :key='index'
+            @click='selected(tag.id)'
+            pill
+            link
+            color='orange'
+            :outlined='!selectedTags.includes(tag.id)'
+          )
+            | {{ tag.label }}
+          v-btn(icon color='orange' light)
+            v-icon(light) mdi-magnify
+
 </template>
 
 <script>
