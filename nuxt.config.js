@@ -4,6 +4,7 @@ const strapiAPIUri = process.env.API_URL || "http://localhost:1337/graphql";
 const cloudinaryName = process.env.CLOUDINARY_NAME;
 const cloudinaryKey = process.env.CLOUDINARY_KEY;
 const cloudinarySecret = process.env.CLOUDINARY_SECRET;
+const appName = process.env.APP_NAME;
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -12,7 +13,8 @@ export default {
     strapiBaseUri,
     cloudinaryName,
     cloudinaryKey,
-    cloudinarySecret
+    cloudinarySecret,
+    appName
   },
   generate: {
     fallback: true
@@ -20,7 +22,7 @@ export default {
   target: 'static',
   head: {
     titleTemplate: '%s - frontend',
-    title: 'frontend',
+    title: appName,
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
