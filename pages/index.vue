@@ -1,17 +1,23 @@
 <template lang="pug">
-  v-row(justify='center' align='center')
-    v-card.pa-4.ma-4(v-for='(movie, index) in movies' :key='index')
-      div.d-flex.flex-no-wrap.justify-sapce-between
-        v-img(:src='movie.cover.url' width="200")
-        div.flex.flex-col
-          v-card-title.headline.capitalize
+  div(class="grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto")
+    v-card(
+      v-for='(movie, index) in movies'
+      :key='index'
+      elevation="10"
+    )
+      div(class="d-flex flex-no-wrap justify-space-between flex-col sm:flex-row")
+        img(
+          class="sm:max-h-80 sm:block"
+          :src='movie.cover.url'
+        )
+        div(class="flex flex-col")
+          v-card-title(class="headline capitalize")
             | {{ movie.Title }}
           v-card-text
-            p
-              | {{ movie.brief }}
+            | {{ movie.brief }}
           v-card-actions
             v-spacer
-              v-chip.mx-1(color='orange' link='' outlined='' pill='' v-for='(tag,index) in movie.tags' :key='index')
+              v-chip(class="mx-1" color='orange' link='' outlined='' pill='' v-for='(tag,index) in movie.tags' :key='index')
                 | {{ tag.label }}
 </template>
 
