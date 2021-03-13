@@ -1,12 +1,18 @@
-query Movies {
+query allMovies {
   movies {
+    id,
     Title,
     brief
     cover {
       url
     },
     tags {
+      id
       label
+    },
+    genres {
+      id
+      genre
     }
   }
 }

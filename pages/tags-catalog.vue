@@ -39,6 +39,7 @@
 <script>
 import tagQuery from '~/apollo/queries/tag/tags'
 import genreQuery from '~/apollo/queries/genre/genres'
+import filtersQuery from '~/apollo/queries/filters'
 
 export default {
   components: {},
@@ -47,7 +48,8 @@ export default {
       tags: [],
       genres: [],
       selectedChips: [],
-      selectedGenres: []
+      selectedGenres: [],
+      filters: []
     }
   },
   apollo: {
@@ -58,6 +60,10 @@ export default {
     genres: {
       prefetch: true,
       query: genreQuery
+    },
+    filters: {
+      prefetch: true,
+      query: filtersQuery
     }
   },
   methods: {

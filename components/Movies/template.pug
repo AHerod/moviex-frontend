@@ -1,0 +1,25 @@
+div(class="grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto")
+  v-card(
+    v-for='(movie, index) in movies'
+    :key='index'
+    elevation="10"
+  )
+    h1 {{movie.id}}
+    div(class="d-flex flex-no-wrap justify-space-between flex-col sm:flex-row")
+      img(
+        class="sm:max-h-80 sm:block"
+        :src='movie.cover.url'
+      )
+      div(class="flex flex-col")
+        v-card-title(class="headline capitalize")
+          | {{ movie.Title }}
+        v-card-text
+          | {{ movie.brief }}
+        v-card-actions
+          v-spacer
+            div
+              v-chip(class="mx-1 my-2" color='orange' link='' outlined='' pill='' v-for='(tag,index) in movie.tags' :key='index')
+                | {{ tag.label }}
+            div
+              v-chip(class="mx-1" color='blue' link='' outlined='' pill='' v-for='(genre,index) in movie.genres' :key='index')
+                | {{ genre.genre }}

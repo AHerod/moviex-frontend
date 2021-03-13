@@ -103,8 +103,8 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Tags Catalog',
-          to: '/tags-catalog'
+          title: 'Catalog',
+          to: '/catalog'
         }
       ],
       miniVariant: false,

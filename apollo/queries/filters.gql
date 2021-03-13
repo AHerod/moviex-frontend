@@ -1,0 +1,10 @@
+query allFilters {
+  tags {
+    label
+    id
+  }
+  genres {
+    genre
+    id
+  }
+}

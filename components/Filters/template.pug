@@ -1,0 +1,21 @@
+v-row
+  v-col.text-center
+    div(v-for="(filter, label, filtersIndex) in filters")
+      div.py-2.flex.items-center.justify-between
+        h2.text-left {{label}}
+        div
+          v-chip(
+            class='m-1 text-red-400'
+            v-for='(tag,index) in filter'
+            :key='index'
+            @click='selected(tag.id,label)'
+            pill
+            light
+            link
+            :color='tagColors[(filtersIndex+1)*300]'
+            :outlined='!selectedFilters[label].includes(tag.id)'
+          )
+            | {{ tag.label || tag.genre }}
+        v-btn(icon :color='tagColors[(filtersIndex+1)*300]' light)
+          v-icon(light) mdi-magnify
+      v-divider

@@ -48,7 +48,7 @@ export default {
   computed: {
     moviesList() {
       let arr = []
-      this.movies.forEach((el, index) => arr.push(false));
+      this.movies.filter((el, index) => arr.push(false));
       return arr
     }
   },
