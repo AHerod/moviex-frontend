@@ -20,6 +20,9 @@ export default {
     return {
       movies: [],
       filteredMovies: [],
+      selectedFilters: [],
+      moviesList: [],
+      noResultsAlert: false,
       query: '',
       hover: false
     }
@@ -32,30 +35,40 @@ export default {
   },
   watch: {
     filters: {
-      handler(newValue, oldValue) {
-        Object.keys(newValue).forEach(filterName => {
-          // console.log(filterName, newValue[filterName]);
-          let filteredMovies = this.movies
-
-          filteredMovies.filter(movie => movie[filterName].some(r=> newValue[filterName].includes(r)))
-          console.log('filteredMovies',filteredMovies)
-          this.filteredMovies = filteredMovies
-        })
+      handler(newValue) {
+        this.selectedFilters = newValue
+        this.getMoviesList()
       },
       deep: true,
       immediate: true
     }
   },
   created() {
+  },
+  computed: {},
+  methods: {
+    getMoviesList() {
+      let filteredMovies = this.movies
+      let filterTypes = Object.keys(this.selectedFilters)
 
-  },
-  computed: {
-    moviesList() {
-      let arr = []
-      this.movies.forEach((el, index) => arr.push(false))
-      return arr
+      filterTypes.forEach(type => {
+          if (this.selectedFilters[type]) {
+            filteredMovies = filteredMovies.filter(movie => {
+              let filtersIDList = movie[type].map(a => a.id)
+
+              return this.selectedFilters[type].every(tag => filtersIDList.includes(tag))
+            })
+
+            if(filteredMovies.length === 0) {
+              this.moviesList = []
+              this.noResultsAlert = true
+            }
+          }
+        }
+      )
+
+      this.moviesList = filteredMovies
     }
-  },
-  methods: {}
+  }
 }
 </script>
