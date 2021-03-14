@@ -1,25 +1,30 @@
-div(class='grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto' v-if='moviesList.length > 0')
-  v-card(
-    v-for='(movie, index) in moviesList'
-    :key='index'
-    elevation='10'
-  )
-    div(class='d-flex flex-no-wrap justify-space-between flex-col sm:flex-row h-full')
-      div(class=' flex sm:w-1/2')
-        img(
-          class='object-cover'
-          :src='movie.cover.url'
-        )
-      div(class='grid grid-col-1 flex-grow sm:w-2/3 h-full max-h-max')
-        v-card-title(class='headline capitalize')
-          | {{ movie.Title }}
-        v-card-text
-          | {{ movie.brief }}
-        v-card-actions
-          v-spacer
-            div
-              v-chip(class='mx-1 my-2' color='orange' link='' outlined='' pill='' v-for='(tag,index) in movie.tags' :key='index')
-                | {{ tag.label }}
-            div
-              v-chip(class='mx-1' color='blue' link='' outlined='' pill='' v-for='(genre,index) in movie.genres' :key='index')
-                | {{ genre.genre }}
+div
+  h1(v-if="!filtersSelected" class='absolute top-1/2 inset-0 text-center text-2xl md:text-5xl inset-0')
+    | Select what you are up to!
+  h1(v-else-if='filtersSelected && moviesList.length === 0' class='absolute top-1/2 inset-0 text-center text-2xl md:text-5xl inset-0')
+    | No results
+  div(class='grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto' v-else)
+    v-card(
+      v-for='(movie, index) in moviesList'
+      :key='index'
+      elevation='10'
+    )
+      div(class='d-flex flex-no-wrap justify-space-between flex-col sm:flex-row h-full')
+        div(class=' flex sm:w-1/2')
+          img(
+            class='object-cover'
+            :src='movie.cover.url'
+          )
+        div(class='grid grid-col-1 flex-grow sm:w-2/3 h-full max-h-max')
+          v-card-title(class='headline capitalize')
+            | {{ movie.Title }}
+          v-card-text
+            | {{ movie.brief }}
+          v-card-actions
+            v-spacer
+              div
+                v-chip(class='mx-1 my-2' color='orange' link='' outlined='' pill='' v-for='(tag,index) in movie.tags' :key='index')
+                  | {{ tag.label }}
+              div
+                v-chip(class='mx-1' color='blue' link='' outlined='' pill='' v-for='(genre,index) in movie.genres' :key='index')
+                  | {{ genre.genre }}

@@ -2,7 +2,7 @@ div(class='pb-4 container')
   div(v-for='(filter, label, filtersIndex) in filters')
     div(class='py-2 flex items-center justify-between')
       h2(class='text-left') {{label}}
-      div
+      div(class='text-center')
         v-chip(
           class='m-1 text-red-400'
           v-for='(tag,index) in filter'
@@ -12,7 +12,7 @@ div(class='pb-4 container')
           light
           link
           :color='tagColors[(filtersIndex+1)*300]'
-          :outlined='!selectedFilters[label].includes(tag.id)'
+          :outlined='selectedFilters[label] && !selectedFilters[label].includes(tag.id)'
         )
           | {{ tag.label || tag.genre }}
       v-btn(icon :color='tagColors[(filtersIndex+1)*300]' light)

@@ -22,7 +22,7 @@ export default {
       filteredMovies: [],
       selectedFilters: [],
       moviesList: [],
-      noResultsAlert: false,
+      filtersSelected: false,
       query: '',
       hover: false
     }
@@ -37,7 +37,20 @@ export default {
     filters: {
       handler(newValue) {
         this.selectedFilters = newValue
-        this.getMoviesList()
+
+        if(Object.keys(newValue).length !== 0) {
+          let allEmpty = Object.keys(newValue).every(function(key){
+            return newValue[key].length === 0
+          })
+
+          if(!allEmpty) {
+            this.filtersSelected = true
+            this.getMoviesList()
+          } else {
+            this.filtersSelected = false
+          }
+        }
+
       },
       deep: true,
       immediate: true
@@ -61,7 +74,6 @@ export default {
 
             if(filteredMovies.length === 0) {
               this.moviesList = []
-              this.noResultsAlert = true
             }
           }
         }

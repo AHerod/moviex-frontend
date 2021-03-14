@@ -12,7 +12,7 @@ export default {
     return {
       filters: [],
       tagColors: {},
-      selectedFilters: {tags:[],genres:[]}
+      selectedFilters: {}
     }
   },
   apollo: {
@@ -24,21 +24,22 @@ export default {
   },
   created() {
     this.tagColors = fullConfig.theme.colors.yellow
+    this.setSelectedFiltersObj()
   },
   updated() {
     this.$emit('change', this.selectedFilters)
   },
   methods: {
-    selected(id,label) {
+    selected(id, label) {
       if (this.selectedFilters[label].includes(id)) {
         this.selectedFilters[label] = this.selectedFilters[label].filter(el => el !== id)
       } else {
         this.selectedFilters[label].push(id)
       }
     },
-    setSelectedFiltersObj(){
-      let filtersNames = Object.keys(this.filters);
-      this.selectedFilters = filtersNames.reduce((acc,curr)=>(acc[curr]=[], acc), {})
+    setSelectedFiltersObj() {
+      let filtersNames = Object.keys(this.filters)
+      this.selectedFilters = filtersNames.reduce((acc, curr) => (acc[curr] = [], acc), {})
     }
   }
 }
