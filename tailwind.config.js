@@ -1,4 +1,11 @@
 module.exports = {
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config.js',
+    jit: false,
+    exposeConfig: false,
+    config: {}
+  },
   purge: [
     './components/**/*.{vue,js}',
     './layouts/**/*.vue',
