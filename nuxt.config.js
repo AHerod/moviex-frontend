@@ -20,7 +20,6 @@ export default {
     fallback: true
   },
   target: 'static',
-  ssr: 'false',
   head: {
     titleTemplate: '%s - frontend',
     title: appName,
