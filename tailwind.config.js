@@ -1,18 +1,19 @@
 module.exports = {
-  tailwindcss: {
-    cssPath: '~/assets/css/tailwind.css',
-    configPath: 'tailwind.config.js',
-    jit: false,
-    exposeConfig: false,
-    config: {}
+  purge: {
+    mode: 'layers',
+    content:
+      [
+        './components/**/*.{vue,js,pug}',
+        './layouts/**/*.{vue,js,pug}',
+        './pages/**/*.{vue,js,pug}',
+        './plugins/**/*.{js,ts}',
+        './nuxt.config.{js,ts}'
+      ],
+    options: {
+      keyframes: true,
+      safelist: ['html', 'body']
+    }
   },
-  purge: [
-    './components/**/*.{vue,js}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-    './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}',
-  ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     screens: {
@@ -31,13 +32,17 @@ module.exports = {
       'xl': '1280px',
       // => @media (min-width: 1280px) { ... }
 
-      '2xl': '1536px',
+      '2xl': '1536px'
       // => @media (min-width: 1536px) { ... }
     },
-    extend: {},
+    extend: {}
   },
   variants: {
-    extend: {},
+    cursor: [],
+    animation: [],
+    accessibility: [],
+    appearance: [],
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 }
