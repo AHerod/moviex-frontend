@@ -19,7 +19,7 @@ export default {
   generate: {
     fallback: true
   },
-  target: 'static',
+  target: 'server',
   head: {
     titleTemplate: '%s - frontend',
     title: appName,
