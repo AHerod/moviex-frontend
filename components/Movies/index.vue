@@ -24,6 +24,7 @@ export default {
       moviesList: [],
       filtersSelected: false,
       query: '',
+      reveal: false,
       hover: false
     }
   },

@@ -1,5 +1,6 @@
 <template lang="pug">
-  h1 Moviex 2021
+  div
+    h1 Moviex 2021
 </template>
 
 <script>
