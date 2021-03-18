@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: {
     mode: 'layers',
@@ -16,6 +18,16 @@ module.exports = {
   },
   darkMode: 'class', // or 'media' or 'class'
   theme: {
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: colors.black,
+      white: colors.white,
+      gray: colors.trueGray,
+      indigo: colors.indigo,
+      red: colors.rose,
+      yellow: colors.amber,
+    },
     screens: {
       'xs': '340px',
       // => @media (min-width: 340px) { ... }
@@ -34,6 +46,36 @@ module.exports = {
 
       '2xl': '1536px'
       // => @media (min-width: 1536px) { ... }
+    },
+    maxHeight: {
+      '0': '0',
+      '1/4': '25%',
+      '1/2': '50%',
+      '3/4': '75%',
+      'full': '100%',
+      '10vh': '10vh',
+      '20vh': '20vh',
+      '30vh': '30vh',
+      '40vh': '40vh',
+      '50vh': '50vh',
+      '60vh': '60vh',
+      '70vh': '70vh',
+      '80vh': '80vh',
+      '90vh': '90vh'
+    },
+    height: {
+      '10vh': '10vh',
+      '20vh': '20vh',
+      '30vh': '30vh',
+      '40vh': '40vh',
+      '50vh': '50vh',
+      '60vh': '60vh',
+      '70vh': '70vh',
+      '80vh': '80vh',
+      '90vh': '90vh'
+    },
+    borderRadius: {
+      '4xl': '3rem'
     },
     extend: {}
   },
