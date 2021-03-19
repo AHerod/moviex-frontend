@@ -1,0 +1,58 @@
+div(class='container mt-8')
+  h1(class='text-3xl mb-4') Browse by genre
+  div(class='text-center')
+    v-chip(
+      class='m-2 md:p-4'
+      v-for='(item,index) in genres'
+      :key='index'
+      @click='selected(item.id)'
+      pill
+      light
+      link
+      color='secondary'
+      :outlined='!selectedGenres.includes(item.id)'
+    )
+      span(class='md:text-base md:p-4') {{ item.label || item.genre }}
+  div(class='grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto')
+    v-card(
+      v-for='(movie, index) in movies'
+      :key='index'
+      elevation='10'
+      rounded='xl'
+    )
+      div(class='d-flex flex-no-wrap justify-space-between flex-col sm:flex-row h-full min-h-full')
+        div(class='relative flex sm:w-1/2')
+          img(
+            class='object-cover rounded-bl-3xl rounded-tr-3xl'
+            :src='movie.cover.url'
+          )
+          div(class='absolute left-2 bottom-4')
+            v-btn(class='mx-2' fab dark small color='orange' @click='reveal = true' v-show='!reveal')
+              v-icon
+                | mdi-account-circle-outline
+          v-expand-transition
+            div(v-if='reveal' class='absolute bottom-0 transition-slow-in-fast-out v-card--reveal h-full w-full')
+              v-card
+                v-card-text
+                  p
+                    | Starring
+                v-card-actions
+                  v-btn(text='' color='orange accent-4' @click='reveal = false')
+                    | Close
+
+        div(class='grid grid-col-1 flex-grow sm:w-2/3 h-full max-h-max')
+          v-card-title(class='headline capitalize')
+            | {{ movie.Title }}
+          v-card-text
+            | {{ movie.brief }}
+          v-card-actions
+            v-spacer
+              div
+                span(class='mx-1 my-2' v-for='(tag,index) in movie.tags' :key='index')
+                  | {{ tag.label }}
+              div
+                span(class='mx-1' v-for='(genre,index) in movie.genres' :key='index')
+                  | {{ genre.genre }}
+
+              v-btn(text='' color='teal accent-4')
+                | Learn More

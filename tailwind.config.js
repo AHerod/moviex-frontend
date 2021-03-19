@@ -74,9 +74,6 @@ module.exports = {
       '80vh': '80vh',
       '90vh': '90vh'
     },
-    borderRadius: {
-      '4xl': '3rem'
-    },
     extend: {}
   },
   variants: {
