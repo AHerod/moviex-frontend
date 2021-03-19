@@ -6,17 +6,26 @@ div
           class='object-cover w-full rounded-bl-4xl rounded-tr-4xl'
           src='https://m.media-amazon.com/images/M/MV5BMTY1OTA2MjI5OV5BMl5BanBnXkFtZTgwNzkxMjU4NjM@._V1_.jpg'
         )
+        div(class='absolute transform right-4 -bottom-8 sm:bottom-auto sm:right-auto sm:-left-10 sm:top-1/2 sm:-translate-y-1/2')
+          v-btn(class='mx-2' fab dark large color='orange')
+            v-icon
+              | mdi-play
         div(class='absolute left-2 bottom-4')
           v-btn(class='mx-2' fab dark small color='orange')
             v-icon
               | mdi-account-circle-outline
 
-      div(class='grid grid-col-1 flex-grow h-full max-h-max pl-8 md:pl-16 pr-4 md:pr-12 py-8 md:w-3/5')
+      div(class='grid grid-col-1 flex-grow h-full max-h-max pl-8 md:pl-16 py-8 md:w-3/5')
+        div
+          v-icon(v-for='(star, index) of 5' :key='index' :color='index < 3 ? "orange": ""')
+            | mdi-star-circle
         h1(class='capitalize text-2xl md:text-3xl my-2')
           | Glass
-        p(class='md:text-xl')
+        p(class='md:text-xl w-5/6')
           | After pursuing Kevin Wendell Crumb and the multiple identities that reside within, David Dunn finds himself locked in a mental hospital alongside his archenemy, Elijah Price. The trio must now contend with a psychiatrist, who is out to prove they do not actually possess superhuman abilities.
         div
           v-spacer
-            v-btn(text='' color='teal accent-4')
-              | Learn More
+            v-btn(outlined color='secondary' class='mr-4')
+              | Add to Watchlist
+            v-btn(color='secondary')
+              | Reviews
