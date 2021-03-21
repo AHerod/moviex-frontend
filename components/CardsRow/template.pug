@@ -13,13 +13,16 @@ div(class='container mt-8')
       :outlined='!selectedGenres.includes(item.id)'
     )
       span(class='md:text-base md:p-4') {{ item.label || item.genre }}
-  div(class='grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto')
+  div(class='grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto relative')
     v-card(
       v-for='(movie, index) in movies'
       :key='index'
       elevation='10'
       rounded='xl'
     )
+      div(class='absolute right-3.5 top-3')
+        v-icon(class='' color='gray' small)
+          | mdi-heart-outline
       div(class='d-flex flex-no-wrap justify-space-between flex-col sm:flex-row h-full min-h-full')
         div(class='relative flex sm:w-1/2')
           img(
@@ -40,10 +43,13 @@ div(class='container mt-8')
                   v-btn(text='' color='orange accent-4' @click='reveal = false')
                     | Close
 
-        div(class='grid grid-col-1 flex-grow sm:w-2/3 h-full max-h-max')
+        div(class='grid grid-col-1 flex-grow sm:w-2/3 h-full max-h-max rounded-br-3xl rounded-tr-3xl')
           v-card-title(class='headline capitalize')
-            | {{ movie.Title }}
-          v-card-text
+            div(class='w-full')
+              v-icon(v-for='(star, index) of 5' :key='index' :color='index < 3 ? "orange": ""' size='small')
+                | mdi-star
+            h1 {{ movie.Title }}
+          v-card-text(class='text-gray-400 pr-10')
             | {{ movie.brief }}
           v-card-actions
             v-spacer
@@ -53,6 +59,3 @@ div(class='container mt-8')
               div
                 span(class='mx-1' v-for='(genre,index) in movie.genres' :key='index')
                   | {{ genre.genre }}
-
-              v-btn(text='' color='teal accent-4')
-                | Learn More
