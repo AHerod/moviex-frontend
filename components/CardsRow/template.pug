@@ -1,17 +1,30 @@
-div
-  h1(v-if='!filtersSelected' class='absolute top-1/2 inset-0 text-center text-2xl md:text-5xl inset-0')
-    | What are you in the mood for?
-  h1(v-else-if='filtersSelected && moviesList.length === 0' class='absolute top-1/2 inset-0 text-center text-2xl md:text-5xl inset-0')
-    | No results
-  div(class='grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto' v-else)
+div(class='container mt-8')
+  h1(class='text-3xl mb-4') Browse by genre
+  div(class='text-center')
+    v-chip(
+      class='m-2 md:p-4 border'
+      v-for='(item,index) in genres'
+      :key='index'
+      @click='selectedChips(item.id)'
+      pill
+      light
+      link
+      color='secondary'
+      :outlined='!selectedGenres.includes(item.id)'
+    )
+      span(class='md:text-base md:p-4') {{ item.label || item.genre }}
+  div(class='grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto relative')
     v-card(
-      v-for='(movie, index) in moviesList'
+      v-for='(movie, index) in selectedGenres.length > 0 ? selectedMovies() : movies'
       :key='index'
       elevation='0'
       class='p-4'
       color='primary'
     )
-      div(class='d-flex flex-no-wrap justify-space-between flex-col sm:flex-row h-full')
+      div(class='absolute right-3.5 top-3')
+        v-icon(class='' color='gray' large)
+          | mdi-bookmark-outline
+      div(class='d-flex flex-no-wrap justify-space-between flex-col sm:flex-row h-full min-h-full')
         div(class='relative flex sm:w-1/2 shadow-2xl rounded-bl-3xl rounded-tr-3xl')
           img(
             class='object-cover rounded-bl-3xl rounded-tr-3xl'
@@ -31,9 +44,9 @@ div
                   v-btn(text='' color='secondary' @click='reveal = false')
                     | Close
 
-        div(class='grid grid-col-1 flex-grow sm:w-2/3 h-full max-h-max')
+        div(class='grid grid-col-1 flex-grow sm:w-2/3 h-full max-h-max rounded-br-3xl rounded-tr-3xl')
           v-card-title(class='headline capitalize')
-            | {{ movie.Title }}
+            h1 {{ movie.Title }}
           v-card-text(class='text-gray-400 pr-10')
             | {{ movie.brief }}
           v-card-actions

@@ -11,11 +11,11 @@ export default {
   data() {
     return {
       filters: [],
-      tagColors: {},
       selectedFilters: {}
     }
   },
   apollo: {
+    $loadingKey: 'loading',
     filters: {
       prefetch: true,
       query: filtersQuery,
@@ -23,7 +23,6 @@ export default {
     }
   },
   created() {
-    this.tagColors = fullConfig.theme.colors.yellow
     this.setSelectedFiltersObj()
   },
   updated() {

@@ -1,0 +1,30 @@
+div(class='container')
+  div(class='rounded-3xl h-full md:max-h-50vh bg-gray-100 d-flex flex-col sm:flex-row-reverse flex-no-wrap justify-space-between flex-col sm:flex-row')
+    div(class='relative flex md:w-2/5')
+      img(
+        class='object-cover w-full rounded-bl-3xl rounded-tr-3xl'
+        src='https://m.media-amazon.com/images/M/MV5BMTY1OTA2MjI5OV5BMl5BanBnXkFtZTgwNzkxMjU4NjM@._V1_.jpg'
+      )
+      div(class='absolute transform right-4 -bottom-8 sm:bottom-auto sm:right-auto sm:-left-10 sm:top-1/2 sm:-translate-y-1/2')
+        v-btn(class='mx-2' fab dark large color='secondary')
+          v-icon
+            | mdi-play
+      div(class='absolute left-2 bottom-4')
+        v-btn(class='mx-2' fab dark small color='secondary')
+          v-icon
+            | mdi-account-circle-outline
+
+    div(class='grid grid-col-1 flex-grow h-full max-h-max pl-8 md:pl-16 py-8 md:w-3/5')
+      div
+        v-icon(v-for='(star, index) of 5' :key='index' :color='index < 3 ? "secondary": ""')
+          | mdi-star
+      h1(class='capitalize text-2xl md:text-3xl lg:text-6xl my-2')
+        | Glass
+      p(class='md:text-xl w-5/6')
+        | After pursuing Kevin Wendell Crumb and the multiple identities that reside within, David Dunn finds himself locked in a mental hospital alongside his archenemy, Elijah Price. The trio must now contend with a psychiatrist, who is out to prove they do not actually possess superhuman abilities.
+      div
+        v-spacer
+          v-btn(outlined color='secondary' class='mr-4')
+            | Add to Watchlist
+          v-btn(color='secondary')
+            | Reviews

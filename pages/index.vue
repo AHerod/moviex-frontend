@@ -1,16 +1,21 @@
 <template lang="pug">
   div
-    h1 Moviex 2021
+    hero-card
+    cards-row
 </template>
 
 <script>
 import Logo from '@/components/Logo.vue'
 import VuetifyLogo from '@/components/VuetifyLogo.vue'
+import HeroCard from '@/components/HeroCard'
+import CardsRow from '@/components/CardsRow'
 
 export default {
   components: {
     Logo,
-    VuetifyLogo
+    VuetifyLogo,
+    HeroCard,
+    CardsRow
   },
   data() {
     return {
