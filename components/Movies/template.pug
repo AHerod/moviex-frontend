@@ -1,22 +1,24 @@
 div
   h1(v-if='!filtersSelected' class='absolute top-1/2 inset-0 text-center text-2xl md:text-5xl inset-0')
-    | Select what you are up to!
+    | What are you in the mood for?
   h1(v-else-if='filtersSelected && moviesList.length === 0' class='absolute top-1/2 inset-0 text-center text-2xl md:text-5xl inset-0')
     | No results
   div(class='grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto' v-else)
     v-card(
       v-for='(movie, index) in moviesList'
       :key='index'
-      elevation='10'
+      elevation='0'
+      class='p-4'
+      color='primary'
     )
       div(class='d-flex flex-no-wrap justify-space-between flex-col sm:flex-row h-full')
-        div(class='relative flex sm:w-1/2')
+        div(class='relative flex sm:w-1/2 shadow-2xl rounded-bl-3xl rounded-tr-3xl')
           img(
-            class='object-cover'
+            class='object-cover rounded-bl-3xl rounded-tr-3xl'
             :src='movie.cover.url'
           )
           div(class='absolute left-2 bottom-4')
-            v-btn(class='mx-2' fab dark small color='orange' @click='reveal = true' v-show='!reveal')
+            v-btn(class='mx-2' fab dark small color='secondary' @click='reveal = true' v-show='!reveal')
               v-icon
                 | mdi-account-circle-outline
           v-expand-transition
@@ -26,13 +28,13 @@ div
                   p
                     | Starring
                 v-card-actions
-                  v-btn(text='' color='orange accent-4' @click='reveal = false')
+                  v-btn(text='' color='secondary' @click='reveal = false')
                     | Close
 
         div(class='grid grid-col-1 flex-grow sm:w-2/3 h-full max-h-max')
           v-card-title(class='headline capitalize')
             | {{ movie.Title }}
-          v-card-text
+          v-card-text(class='text-gray-400 pr-10')
             | {{ movie.brief }}
           v-card-actions
             v-spacer
@@ -42,8 +44,3 @@ div
               div
                 span(class='mx-1' v-for='(genre,index) in movie.genres' :key='index')
                   | {{ genre.genre }}
-
-              v-btn(text='' color='teal accent-4')
-                | Learn More
-
-

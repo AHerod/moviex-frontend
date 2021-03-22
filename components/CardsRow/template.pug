@@ -2,10 +2,10 @@ div(class='container mt-8')
   h1(class='text-3xl mb-4') Browse by genre
   div(class='text-center')
     v-chip(
-      class='m-2 md:p-4'
+      class='m-2 md:p-4 border'
       v-for='(item,index) in genres'
       :key='index'
-      @click='selected(item.id)'
+      @click='selectedChips(item.id)'
       pill
       light
       link
@@ -15,22 +15,23 @@ div(class='container mt-8')
       span(class='md:text-base md:p-4') {{ item.label || item.genre }}
   div(class='grid grid-flow-row lg:grid-cols-2 gap-4 md:container md:mx-auto relative')
     v-card(
-      v-for='(movie, index) in movies'
+      v-for='(movie, index) in selectedGenres.length > 0 ? selectedMovies() : movies'
       :key='index'
-      elevation='10'
-      rounded='xl'
+      elevation='0'
+      class='p-4'
+      color='primary'
     )
       div(class='absolute right-3.5 top-3')
-        v-icon(class='' color='gray' small)
-          | mdi-heart-outline
+        v-icon(class='' color='gray' large)
+          | mdi-bookmark-outline
       div(class='d-flex flex-no-wrap justify-space-between flex-col sm:flex-row h-full min-h-full')
-        div(class='relative flex sm:w-1/2')
+        div(class='relative flex sm:w-1/2 shadow-2xl rounded-bl-3xl rounded-tr-3xl')
           img(
             class='object-cover rounded-bl-3xl rounded-tr-3xl'
             :src='movie.cover.url'
           )
           div(class='absolute left-2 bottom-4')
-            v-btn(class='mx-2' fab dark small color='orange' @click='reveal = true' v-show='!reveal')
+            v-btn(class='mx-2' fab dark small color='secondary' @click='reveal = true' v-show='!reveal')
               v-icon
                 | mdi-account-circle-outline
           v-expand-transition
@@ -40,14 +41,11 @@ div(class='container mt-8')
                   p
                     | Starring
                 v-card-actions
-                  v-btn(text='' color='orange accent-4' @click='reveal = false')
+                  v-btn(text='' color='secondary' @click='reveal = false')
                     | Close
 
         div(class='grid grid-col-1 flex-grow sm:w-2/3 h-full max-h-max rounded-br-3xl rounded-tr-3xl')
           v-card-title(class='headline capitalize')
-            div(class='w-full')
-              v-icon(v-for='(star, index) of 5' :key='index' :color='index < 3 ? "orange": ""' size='small')
-                | mdi-star
             h1 {{ movie.Title }}
           v-card-text(class='text-gray-400 pr-10')
             | {{ movie.brief }}

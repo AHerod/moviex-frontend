@@ -32,12 +32,19 @@ export default {
   },
   computed: {},
   methods: {
-    selected(id) {
+    selectedChips(id) {
       if (this.selectedGenres.includes(id)) {
         this.selectedGenres = this.selectedGenres.filter(el => el !== id)
       } else {
         this.selectedGenres.push(id)
       }
+    },
+    selectedMovies() {
+      let test = this.movies.filter((movie => {
+        let genres = movie.genres.filter(movieGenre => this.selectedGenres.includes(movieGenre.id))
+        return genres.length > 0
+      }))
+      return test
     }
   }
 }
