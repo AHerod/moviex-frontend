@@ -17,6 +17,7 @@ module.exports = {
     }
   },
   darkMode: 'class', // or 'media' or 'class'
+  important: true,
   theme: {
     colors: {
       transparent: 'transparent',
