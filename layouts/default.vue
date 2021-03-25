@@ -29,25 +29,27 @@
       app
     >
       <v-app-bar-nav-icon @click.stop='drawer = !drawer' />
-      <div v-if='isAuthenticated' class='flex w-full justify-end items-center'>
-        <a href="/profile">
-          <v-avatar>
-            <img
-              src='https://cdn.vuetifyjs.com/images/john.jpg'
-              alt='John'
-            >
-          </v-avatar>
-          <span class='text-black'>{{ loggedInUser.username }}</span>
-        </a>
-        <button @click='logout'>Logout</button>
-      </div>
-      <div>
-        <nuxt-link class="text-gray-700" to="/register">
-          <strong>Register</strong>
-        </nuxt-link>
-        <nuxt-link class="bg-yellow-500" to="/login">
-          Log in
-        </nuxt-link>
+      <div class='flex w-full justify-end items-center'>
+        <div v-if='isAuthenticated'>
+          <a href="/profile">
+            <v-avatar>
+              <img
+                src='https://cdn.vuetifyjs.com/images/john.jpg'
+                alt='John'
+              >
+            </v-avatar>
+            <span class='text-black'>{{ loggedInUser.username }}</span>
+          </a>
+          <button @click='logout'>Logout</button>
+        </div>
+        <div v-else>
+          <nuxt-link class="text-gray-700" to="/register">
+            <strong>Register</strong>
+          </nuxt-link>
+          <nuxt-link class="bg-yellow-500" to="/login">
+            Log in
+          </nuxt-link>
+        </div>
       </div>
     </v-app-bar>
     <v-main>
