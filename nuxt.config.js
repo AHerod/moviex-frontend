@@ -60,9 +60,6 @@ export default {
     '@nuxtjs/auth-next'
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    baseURL: strapiBaseUri
-  },
 
   auth: {
     strategies: {

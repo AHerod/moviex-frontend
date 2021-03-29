@@ -14,37 +14,19 @@ export default {
   },
   methods: {
     async login() {
-      const credentials = this.form;
+      this.error = null;
       try {
-        const { data: { login: { user, jwt } } } = await this.$apollo.mutate({
-          mutation: gql`
-            mutation($identifier: String!, $password: String!) {
-              login(input: { identifier: $identifier, password: $password }) {
-                user {
-                  id
-                  username
-                  email
-                  role {
-                    name
-                    type
-                    description
-                  }
-                }
-                jwt
-              }
-            }
-          `,
-          variables: credentials
-        })
-        //set the jwt to the this.$apolloHelpers.onLogin
-        await this.$apolloHelpers.onLogin(jwt)
+        await this.$auth.loginWith("local", {
+          data: {
+            identifier: this.form.identifier,
+            password: this.form.password,
+          },
+        });
+        this.$router.push("/");
       } catch (e) {
-        console.error(e)
+        this.error = e.response.data.message[0].messages[0].message;
       }
-    }
+    },
   },
-  async mounted(){
-    await this.$apolloHelpers.onLogout()
-  }
 }
 </script>
