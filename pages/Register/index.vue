@@ -23,7 +23,7 @@ export default {
       this.error = null;
       try {
         this.$axios.setToken(false);
-        await this.$axios.post("https://moviex-backend.herokuapp.com/auth/local/register", {
+        await this.$axios.post("auth/local/register", {
           username: this.form.username,
           email: this.form.email,
           password: this.form.password,
