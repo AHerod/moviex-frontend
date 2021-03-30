@@ -44,7 +44,7 @@
         </div>
         <div v-else>
           <nuxt-link class="text-gray-700" to="/register">
-            <strong>Register</strong>
+            <strong>Register {{isAuthenticated}}</strong>
           </nuxt-link>
           <nuxt-link class="bg-yellow-500" to="/login">
             Log in
@@ -69,6 +69,7 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
+  middleware: 'auth',
   data() {
     return {
       drawer: false,

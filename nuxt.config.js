@@ -1,6 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 const strapiBaseUri = process.env.BACKEND_URL || "http://localhost:1337";
-const strapiAPIUri = process.env.API_URL || "http://localhost:1337/graphql";
+const strapiAPIUri = process.env.GRAPHQL_API_URL || "http://localhost:1337/graphql";
 const cloudinaryName = process.env.CLOUDINARY_NAME;
 const cloudinaryKey = process.env.CLOUDINARY_KEY;
 const cloudinarySecret = process.env.CLOUDINARY_SECRET;
@@ -61,6 +61,9 @@ export default {
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
 
+  axios: {
+    baseURL: 'https://moviex-backend.herokuapp.com'
+  },
   auth: {
     strategies: {
       local: {
