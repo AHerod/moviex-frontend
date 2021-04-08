@@ -5,7 +5,10 @@
       app
     >
       <v-img src=''></v-img>
-      <v-list>
+      <v-list class='flex flex-col min-h-full p-0'>
+        <v-list-item class='flex items-center justify-center' to='/'>
+          <h1 class='font-bold text-3xl'>MOVIEX</h1>
+        </v-list-item>
         <v-list-item
           v-for='(item, i) in items'
           :key='i'
@@ -20,6 +23,50 @@
             <v-list-item-title v-text='item.title' />
           </v-list-item-content>
         </v-list-item>
+        <v-list-item
+          v-for='(item, i) in authItems'
+          :key='i + `-auth`'
+          :to='item.to'
+          router
+          exact
+          v-if='isAuthenticated'
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-text='item.title' />
+          </v-list-item-content>
+        </v-list-item>
+        <div v-if='isAuthenticated'>
+          <v-list-item to='/profile'>
+            <v-list-item-content>
+              <span class='text-black'>{{ loggedInUser.username }}</span>
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-avatar>
+                <img
+                  src='https://cdn.vuetifyjs.com/images/john.jpg'
+                  alt='John'
+                >
+              </v-avatar>
+            </v-list-item-action>
+          </v-list-item>
+          <v-list-item @click='logout'>
+            <v-list-item-action>
+              <v-icon>mdi-keyboard-return</v-icon>
+            </v-list-item-action>
+            <v-list-item-content><span class='text-black'>Logout</span></v-list-item-content>
+          </v-list-item>
+        </div>
+        <v-list-item v-else class='flex justify-center w-full'>
+          <nuxt-link class='text-gray-700 font-bold px-2' to='/register'>
+            Register
+          </nuxt-link>
+          <nuxt-link class='text-yellow-500 font-bold px-2' to='/login'>
+            Sign In
+          </nuxt-link>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
@@ -29,28 +76,6 @@
       app
     >
       <v-app-bar-nav-icon @click.stop='drawer = !drawer' />
-      <div class='flex w-full justify-end items-center'>
-        <div v-if='isAuthenticated'>
-          <a href="/profile">
-            <v-avatar>
-              <img
-                src='https://cdn.vuetifyjs.com/images/john.jpg'
-                alt='John'
-              >
-            </v-avatar>
-            <span class='text-black'>{{ loggedInUser.username }}</span>
-          </a>
-          <button @click='logout'>Logout</button>
-        </div>
-        <div v-else>
-          <nuxt-link class="text-gray-700" to="/register">
-            <strong>Register</strong>
-          </nuxt-link>
-          <nuxt-link class="bg-yellow-500" to="/login">
-            Log in
-          </nuxt-link>
-        </div>
-      </div>
     </v-app-bar>
     <v-main>
       <v-container fluid>
@@ -58,7 +83,7 @@
       </v-container>
     </v-main>
     <v-footer
-      :absolute='false'
+      :absolute='true'
       app
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
@@ -67,21 +92,29 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
       drawer: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-home',
           title: 'Home',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-view-module',
           title: 'Catalog',
           to: '/catalog'
+        }
+      ],
+      authItems: [
+        {
+          icon: 'mdi-bookmark',
+          title: 'Your Watchlist',
+          to: '/'
         }
       ],
       miniVariant: false,
@@ -90,13 +123,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+    ...mapGetters(['isAuthenticated', 'loggedInUser'])
   },
   mounted() {
   },
   methods: {
     async logout() {
-      await this.$auth.logout();
+      await this.$auth.logout()
     }
   }
 }
