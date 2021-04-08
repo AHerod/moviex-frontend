@@ -44,7 +44,7 @@
         </div>
         <div v-else>
           <nuxt-link class="text-gray-700" to="/register">
-            <strong>Register {{isAuthenticated}}</strong>
+            <strong>Register</strong>
           </nuxt-link>
           <nuxt-link class="bg-yellow-500" to="/login">
             Log in
@@ -95,8 +95,8 @@ export default {
   mounted() {
   },
   methods: {
-    logout() {
-      console.log('LOGOUT')
+    async logout() {
+      await this.$auth.logout();
     }
   }
 }

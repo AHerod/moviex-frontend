@@ -1,5 +1,6 @@
 export const getters = {
   isAuthenticated(state) {
+    console.log('state', state)
     return state.auth.loggedIn
   },
 
