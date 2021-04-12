@@ -3,6 +3,9 @@
     <v-navigation-drawer
       v-model='drawer'
       app
+      class='max-h-full'
+      dark
+      color='secondary'
     >
       <v-img src=''></v-img>
       <v-list class='flex flex-col min-h-full p-0'>
@@ -70,12 +73,22 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
-      :clipped-left='true'
       fixed
       flat
       app
+      color='white'
     >
       <v-app-bar-nav-icon @click.stop='drawer = !drawer' />
+      <div class='w-1/2 my-0 mx-auto'>
+        <v-autocomplete
+          outlined
+          class='mt-8'
+          filled
+          multiple
+          rounded
+          small-chips
+        ></v-autocomplete>
+      </div>
     </v-app-bar>
     <v-main>
       <v-container fluid>
@@ -97,7 +110,7 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      drawer: false,
+      drawer: true,
       items: [
         {
           icon: 'mdi-home',
